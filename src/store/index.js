@@ -8,20 +8,8 @@ export default createStore({
     };
   },
   getters: {
-    activeList(state) {
-      return state.lists.filter((i) => !i.isDone);
-    },
-    doneList(state) {
-      return state.lists.filter((i) => i.isDone);
-    },
-    doneCount(state, getters) {
-      return getters.doneList.length;
-    },
-    activeCount(state, getters) {
-      return getters.activeList.length;
-    },
     listCount(state, getters) {
-      return getters.activeList.length + getters.doneList.length;
+      return state.lists.length;
     },
   },
   mutations: {
@@ -34,21 +22,35 @@ export default createStore({
       const checkedItem = state.lists.find((i) => i.id === item.id);
       checkedItem.isDone = !checkedItem.isDone;
     },
+    changeOrder(state, { oldIndex, newIndex }) {
+      const cloneLists = { ...state.lists[oldIndex] };
+      state.lists.splice(oldIndex, 1);
+      state.lists.splice(newIndex, 0, cloneLists);
+    },
   },
   actions: {
     async deleteItem({ dispatch }, item) {
       await _axios.delete(`/${item.id}`);
-      dispatch("fetchLists");
     },
     async editItem({ dispatch }, newItem) {
-      await _axios.put(`/${newItem.id}`, { title: newItem.editText, done: newItem.isDone, order: newItem.order });
-      dispatch("fetchLists");
+      if (newItem.editText) {
+        await _axios.put(`/${newItem.id}`, {
+          title: newItem.editText,
+          done: newItem.isDone,
+          order: newItem.order,
+        });
+      } else {
+        await _axios.put(`/${newItem.id}`, {
+          title: newItem.text,
+          done: newItem.isDone,
+          order: newItem.order,
+        });
+      }
     },
     async fetchLists({ commit }) {
-      //api { id, order, title, done, createdAt , updatedAt }
+      //api format : { id, order, title, done, createdAt , updatedAt }
       //date format : ISO 8601
       const { data } = await _axios.get();
-
       const res = data.map((i) => ({
         id: i.id,
         order: i.order,
@@ -62,7 +64,11 @@ export default createStore({
     },
     async createListItem({ state, dispatch }, text) {
       await _axios.post("/", { title: text, order: state.lists.length + 1 });
-      dispatch("fetchLists");
+    },
+    async reorderItem({ commit, state }, { oldIndex, newIndex }) {
+      commit("changeOrder", { oldIndex, newIndex });
+      const todoIds = state.lists.map((i) => i.id);
+      await _axios.put("/reorder", { todoIds });
     },
   },
 });

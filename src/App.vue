@@ -1,24 +1,26 @@
 <template>
-  <div class="container">
+  <div class="container mx-auto my-10 text-center">
     <CreateListItem />
     <ListsArea />
   </div>
 </template>
 
 <script>
-  import CreateListItem from "./components/CreateListItem.vue";
-  import ListsArea from "./components/ListsArea.vue";
+import CreateListItem from "./components/CreateListItem.vue";
+import ListsArea from "./components/ListsArea.vue";
 
-  export default {
-    components: {
-      CreateListItem,
-      ListsArea,
-    },
-  };
+export default {
+  components: {
+    CreateListItem,
+    ListsArea,
+  },
+};
 </script>
 
-<style scoped>
-  .container {
-    background: linear-gradient(to bottom, #26a0da, #314755);
-  }
+<style lang="scss">
+body {
+  background: #3b82a3;
+  width: 100%;
+  height: 100%;
+}
 </style>
