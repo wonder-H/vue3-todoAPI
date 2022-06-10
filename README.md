@@ -1,51 +1,22 @@
-# 📌 할 일 관리(Todo) 프로젝트
-
-- 과제 기한:
-  - 과제 수행 기간: 05월 19일(목) ~ 06월 09일(목)
-  - 코드 리뷰 기간: 06월 09일(목) ~ 06월 17일(금)
-- 내용:
-  - 주어진 API를 활용해 할 일 관리 프로젝트를 만들어보세요.
-
-## 요구사항
-
-### 필수 요구사항
-
-- [x] 할 일 목록(list)을 조회(Read)할 수 있어야 합니다.
-- [x] 할 일 항목(item)을 추가(Create)할 수 있어야 합니다.
-- [x] 할 일 항목을 수정(Update)할 수 있어야 합니다.
-- [x] 할 일 항목을 삭제(Delete)할 할 수 있어야 합니다.
-- [x] 실제 서비스로 배포하고 접근 가능한 링크를 추가해야 합니다.
-
-### 선택 요구사항
-
-- [x] 할 일 항목의 순서를 바꿀 수 있도록 만들어 보세요.
-- [ ] 할 일을 완료하지 않은 항목과 완료한 항목을 분류해서 출력해 보세요.
-- [ ] 할 일을 완료한 항목을 한번에 삭제할 수 있도록 만들어 보세요.
-- [x] 할 일 항목의 최신 수정일을 표시해 보세요.
-- [ ] 최초 API 요청(Request)에 대한 로딩 애니메이션을 추가해 보세요.
-- [x] SCSS, Bootstrap 등을 구성해 프로젝트를 최대한 예쁘게(?) 만들어 보세요.
-
----
-
-### 0. 실행법 🖥️
+### 0. Getting started 🖥️
 
 1. npm i
-2. npm run dev -개발 모드용
-3. npm run build -배포용
+2. npm run dev (for development)
+3. npm run build (for production)
 
 <br>
 
-### 1. 결과물 🔎
+### 1. Demo 🔎
 
-- [결과물](https://extraordinary-torrone-d87b30.netlify.app)
+- [Result](https://extraordinary-torrone-d87b30.netlify.app)
 
 <br>
 
-### 2. 사용 기능/툴 ✨
+### 2. Tools ✨
 
 1. vite
 2. scss
-3. 엑시오스 API
+3. axios API
 4. postcss
 5. autoprefixer
 6. Vue3
@@ -56,45 +27,33 @@
 
 <br>
 
-### 3. 구현 기능 정리 ✏️
+### 3. Features ✏️
 
 - Create  
-  : input에서 글 입력 후 엔터 키 누르면 적용되도록 구현
+  : Write text on input tag and press `Enter`key to add as a list
 
 - Read  
-  : 서버에 있는 데이터 불러오도록 구현 : 데이터 변경 시 변경 된 내용 화면에 출력
+  : Basically save data to DB and read from it
 
-- Update : 데이터 변경 시 수정사항 반영되도록 구현
+- Update : 1. Can edit text : 2. Click the list title(text) to show the list is done : 3. Can switch
+  orders of lists
 
-- Delete : 데이터 삭제기능 구현
-
-- Vuex를 이용한 상태관리
-
-- 목록 변경 : Soltablejs를 활용해 목록 순서 변경기능 구현
-
-- 수정한 시간 표시 : Date()를 활용해 데이터 생성/수정 시간 표시
-
-- 비동기 처리  
-  : Axios를 이용해 요청 : 인스턴스로 기본 설정 적용 후 사용
-
-- 에러처리  
-  : 기본적인 `try catch` + `async await` 사용으로 구현
+- Delete : Delete list to remove
 
 <br>
 
-### 4. 학습 키워드 😊
+### 4. Study keywords 😊
 
-1. API를 이용한 기본 CRUD 기능
-2. Tailwindcss 사용해보기
-3. Vuex로 상태관리 기능 구현해보기
-4. 간단한 유효성 검사/에러처리
+1. CRUD features through API
+2. Trying Tailwindcss
+3. Vuex to set state of data
 
 <br>
 
-### 5. 회고 / 간단 정리 🤔
+### 5. P.S 🤔
 
-- 그간 부족하다고 느꼈던 Vuex를 추가로 학습, 활용했다.
-- 구현에 초점을 다뤘더니 코드가 정리되지 못한 느낌이라 아쉽다.
-- SCSS와 Tailwindcss를 동시 적용하는 것은 비효율적인 것 같다.
-- 데이터 관리에서 생각보다 많은 고민이 필요했다.
-- vuex도 모듈로 분리해서 사용하는 것이 좋을 것 같다.
+- Tried using Vuex for management of data(state)
+- Focused on CRUD features(hasn't been refactoring yet)
+- Felt using SCSS with Tailwindcss is not a good idea..(efficiency)
+- Need more study for state management to improve handling data
+- Importance using modules to divide features in store(vuex)
